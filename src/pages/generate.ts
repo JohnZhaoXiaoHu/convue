@@ -58,9 +58,8 @@ export function generateRoutes(filesPath: string[], options: ResolvedOptions): R
     for (let i = 0; i < pathNodes.length; i++) {
       const node = pathNodes[i];
       const isDynamic = isDynamicRoute(node);
-      const isLastOne = i === pathNodes.length - 1;
       const normalizedPart = (isDynamic
-        ? node.replace(/^\[(\.{3})?/, '').replace(/\]$/, '')
+        ? node.replace(/^\:(\.{3})?/, '')
         : node
       ).toLowerCase();
 
@@ -78,9 +77,6 @@ export function generateRoutes(filesPath: string[], options: ResolvedOptions): R
       } else if (normalizedPart !== 'index') {
         if (isDynamic) {
           route.path += `/:${normalizedPart}`;
-          // Catch-all route
-          if (/^\[\.{3}/.test(node)) route.path += '(.*)';
-          else if (isLastOne) route.path += '?';
         } else {
           route.path += `/${normalizedPart}`;
         }
@@ -95,14 +91,6 @@ export function generateRoutes(filesPath: string[], options: ResolvedOptions): R
 
     parentRoutes.push(route);
   }
-
-  // const notFount: Route = {
-  //   name: '',
-  //   path: '',
-  //   component: `/${pagesDir}/404`,
-  // };
-
-  // routes.push(notFount);
 
   const preparedRoutes = prepareRoutes(routes, options);
 
@@ -185,9 +173,9 @@ export function generateClientCode(routes: Route[], middlewares: any[], options:
       const redirect = (path) => {
         next({ path });
       }
-      const allPaths = routes[0].children.map(n => n.path);
-      if (!allPaths.includes(to.path)) {
-        if (allPaths.includes('/404')) {
+      const allRouteNames = routes[0].children.map(n => n.name);
+      if (!allRouteNames.includes(to.name)) {
+        if (allRouteNames.includes('/404')) {
           redirect('/404');
         } else {
           redirect('/');
