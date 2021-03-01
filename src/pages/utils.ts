@@ -11,7 +11,7 @@ export function normalizePath(str: string): string {
 
 export const debug = Debug('vite-plugin-router')
 
-const dynamicRouteRE = new RegExp('^\\:.+\\$')
+const dynamicRouteRE = new RegExp('^\\_.+\\$')
 
 export function isDynamicRoute(routePath: string) {
   return dynamicRouteRE.test(routePath)

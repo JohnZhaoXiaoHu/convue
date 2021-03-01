@@ -6,7 +6,7 @@ For example, the routing address corresponding to the index.tsx file in the /src
 
 ## Dynamic routing
 
-The naming rule for dynamic routing is: param[.vue|.js|.jsx|.ts|.tsx]
+The naming rule for dynamic routing is _param[.vue|.js|.jsx|.ts|.tsx]
 
 ## Add routing information
 

@@ -1,31 +1,31 @@
-# 全局 store
+# Global store
 
-convue 默认会加载 /src/store 目录下的 .js|.ts 文件，并且在 vuex 中自动配置。
+Convue will load the .js|.ts file in the /src/store directory by default and configure it automatically in vuex.
 
-文件的内容结构与 vuex 统一，如下
+The content structure of the file is unified with vuex, as follows
 
 ```js
 export default {
-  state: () => ({}),
-  mutations: {},
-  actions: {},
-  getters: {},
+   state: () => (()),
+   mutations: {},
+   actions: {},
+   getters: {},
 };
 ```
 
-## 说明
+## Description
 
-/src/store 下的 index[.js|.ts] 会直接加载 vuex 项，其他文件会以模块的形式配置。
+The index[.js|.ts] under /src/store will load the vuex item directly, and other files will be configured in the form of modules.
 
-比如存在 index.js 和 user.js 两个文件。
+For example, there are two files index.js and user.js.
 
 index.js
 
 ```js
 export default {
-  state: () => ({
-    text: 'hello',
-  }),
+   state: () => ({
+     text:'hello',
+   }),
 };
 ```
 
@@ -33,27 +33,27 @@ user.js
 
 ```js
 export default {
-  state: () => ({
-    name: 'convue',
-  }),
+   state: () => ({
+     name:'convue',
+   }),
 };
 ```
 
-那么 vuex store 实际上是这种结构
+Then the vuex store is actually this structure
 
 ```js
 export default {
-  state: () => ({
-    text: 'hello',
-  }),
-  modules: {
-    user: {
-      state: () => ({
-        text: 'convue',
-      }),
-    },
-  },
+   state: () => ({
+     text:'hello',
+   }),
+   modules: {
+     user: {
+       state: () => ({
+         text:'convue',
+       }),
+     },
+   },
 };
 ```
 
-其他规则请[参考 store 配置项](/convue/config/store)。
+For other rules, please [refer to store configuration items](/convue/config/store).

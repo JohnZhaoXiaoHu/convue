@@ -59,7 +59,7 @@ export function generateRoutes(filesPath: string[], options: ResolvedOptions): R
       const node = pathNodes[i];
       const isDynamic = isDynamicRoute(node);
       const normalizedPart = (isDynamic
-        ? node.replace(/^\:(\.{3})?/, '')
+        ? node.replace(/^\_(\.{3})?/, '')
         : node
       ).toLowerCase();
 
