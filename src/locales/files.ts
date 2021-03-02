@@ -5,7 +5,7 @@ import { extensionsToGlob } from './utils'
 /**
  * Resolves the files that are valid pages for the given context.
  */
-export async function getStoresPath(options: ResolvedOptions): Promise<string[]> {
+export async function getLocalesPath(options: ResolvedOptions): Promise<string[]> {
   const {
     localesDirPath,
     extensions,

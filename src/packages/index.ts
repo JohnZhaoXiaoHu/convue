@@ -32,13 +32,13 @@ export default function PackagesPlugin(userOptions: Options = {}): Plugin {
           ${styles.map(style => `import '${style}'`).join(';\n')}
 
           const install = (app) => {
-            window.__APP__ = app;
-            app.use(router);
-            app.use(globalComponent);
+            app.use(i18n);
             app.use(store);
             app.use(plugin);
-            app.use(i18n);
+            app.use(globalComponent);
+            app.use(router);
             ${modules.map((_module, index) => `app.use(_package_${index})`).join(';\n')}
+            window.__APP__ = app;
           };
 
           export default {

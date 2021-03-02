@@ -1,7 +1,7 @@
 import { resolve } from 'path';
 import type { Plugin, ResolvedConfig, ModuleNode } from 'vite';
 import { ResolvedOptions, UserOptions } from './types';
-import { getStoresPath } from './files';
+import { getLocalesPath } from './files';
 import {
   generateLocales,
   generateClientCode,
@@ -58,7 +58,7 @@ function routePlugin(userOptions: UserOptions = {}): Plugin {
       if (id === ID) {
         debug('Loading files...');
 
-        filesPath = await getStoresPath(options);
+        filesPath = await getLocalesPath(options);
 
         debug('FilesPath: %O', filesPath);
 

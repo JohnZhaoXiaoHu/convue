@@ -1,9 +1,9 @@
 {/* <route>
   name: 'test'
   meta:
-    title: 111
     layout: empty
     head:
+      title: t('Message')
       meta:
         -
           name: language

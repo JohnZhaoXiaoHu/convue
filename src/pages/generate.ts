@@ -58,10 +58,7 @@ export function generateRoutes(filesPath: string[], options: ResolvedOptions): R
     for (let i = 0; i < pathNodes.length; i++) {
       const node = pathNodes[i];
       const isDynamic = isDynamicRoute(node);
-      const normalizedPart = (isDynamic
-        ? node.replace(/^\_(\.{3})?/, '')
-        : node
-      ).toLowerCase();
+      const normalizedPart = (isDynamic ? node.replace(/^\_(\.{3})?/, '') : node).toLowerCase();
 
       route.name += route.name ? `-${normalizedPart}` : normalizedPart;
 
@@ -126,7 +123,7 @@ export function genarateHeadElements(head: any) {
   if (head && head.meta) {
     const metaTags = head.meta.map((item: Record<string, string>) => {
       const meta: any = document.createElement('meta');
-      Object.keys(item).forEach(key => {
+      Object.keys(item).forEach((key) => {
         meta[key] = item[key];
       });
       return meta;
@@ -136,7 +133,7 @@ export function genarateHeadElements(head: any) {
   if (head && head.link) {
     const linkTags = head.link.map((item: Record<string, string>) => {
       const link: any = document.createElement('link');
-      Object.keys(item).forEach(key => {
+      Object.keys(item).forEach((key) => {
         link[key] = item[key];
       });
       return link;
@@ -191,7 +188,7 @@ export function generateClientCode(routes: Route[], middlewares: any[], options:
 
       const head = to.meta.head;
       if (head && head.title) {
-        document.title = head.title;
+        document.title = head.title[0] === 't' ? window.__APP__.__VUE_I18N__.global.t(head.title.slice(3, -2)) : head.title;
       }
       if (head && head.meta) {
         const metaTags = head.meta.forEach((item) => {
