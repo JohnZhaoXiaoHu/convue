@@ -71,9 +71,11 @@ convue 提供了一套初始化项目的脚手架工具，目前支持 sfc (vue 
 ```bash
 # step 1
 yarn global add convue-cli
-# step 2 - 在命令行中输入 convue, 后续会提示操作
+# step 2
+mkdir my-app && cd my-app
+# step 3 - 在命令行中输入 convue, 后续会提示操作
 convue
-# step 3 - 进入项目文件
+# step 4 - 开始
 npm run dev
 ```
 

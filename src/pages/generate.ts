@@ -188,7 +188,7 @@ export function generateClientCode(routes: Route[], middlewares: any[], options:
 
       const head = to.meta.head;
       if (head && head.title) {
-        document.title = head.title[0] === 't' ? window.__APP__.__VUE_I18N__.global.t(head.title.slice(3, -2)) : head.title;
+        document.title = /^t\(.+\)$/.test(head.title[0]) ? window.__APP__.__VUE_I18N__.global.t(head.title.slice(3, -2)) : head.title;
       }
       if (head && head.meta) {
         const metaTags = head.meta.forEach((item) => {
