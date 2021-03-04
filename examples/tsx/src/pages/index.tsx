@@ -14,7 +14,6 @@
 </route> */}
 
 import { defineComponent, getCurrentInstance, ComponentInternalInstance, toRaw } from 'vue';
-import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 
@@ -23,7 +22,6 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const route = useRoute();
-    const { t } = useI18n();
     const instance: ComponentInternalInstance | null = getCurrentInstance();
     const toString = instance?.appContext.config.globalProperties.$toString;
 
@@ -44,7 +42,7 @@ export default defineComponent({
 
         <div>{toString({ a: 1 })}</div>
 
-        <div>{ t("Message") }</div>
+        <div>{ $t("Message") }</div>
       </div>
     );
   },
