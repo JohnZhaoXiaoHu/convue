@@ -70,9 +70,11 @@ convue provides a set of scaffolding tools for initializing projects, currently 
 ```bash
 # step 1
 yarn global add convue-cli
-# step 2 - type convue on the command line, followed by a prompt to do
+# step 2
+mkdir my-app && cd my-app
+# step 3 - type convue on the command line, followed by a prompt to do
 convue
-# step 3 - enter the project file
+# step 4 - startup
 npm run dev
 ```
 
