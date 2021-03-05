@@ -33,17 +33,17 @@ export default function PackagesPlugin(userOptions: Options = {}): Plugin {
 
           const install = (app) => {
             app.use(i18n);
-            app.use(store);
-            app.use(plugin);
-            app.use(globalComponent);
-            app.use(router);
-            ${modules.map((_module, index) => `app.use(_package_${index})`).join(';\n')}
-            window.__APP__ = app;
             window.t = window.$t = window._t = i18n.global.t;
             app.config.globalProperties = {
               ...app.config.globalProperties,
               $t: i18n.global.t,
             };
+            app.use(router);
+            app.use(store);
+            app.use(plugin);
+            app.use(globalComponent);
+            ${modules.map((_module, index) => `app.use(_package_${index})`).join(';\n')}
+            window.__APP__ = app;
           };
 
           export default {

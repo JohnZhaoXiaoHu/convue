@@ -31,21 +31,27 @@ export function generateClientCode(plugins: any[]) {
     ${plugins.map((n) => n.imports).join('\n')}
 
     const install = (app) => {
+      const { $store, $router, $route, $t } = app.config.globalProperties;
+
       const inject = (name, callback) => {
         app.config.globalProperties = {
           ...app.config.globalProperties,
           ['$' + name]: callback
         };
+        $store['$' + name] = callback;
       };
+
+      $store['$router'] = $router;
+      $store['$route'] = $route;
+      $store['$t'] = $t;
 
       ${plugins
         .map((n) => n.name)
         .map((plugin) => {
           return `
-            const { $store, $router, $route } = app.config.globalProperties;
-            ${plugin}({ app, store: $store, router: $router, route: $route, env: import.meta.env  }, inject)
+            ${plugin}({ app, store: $store, router: $router, route: $route, t: $t,  env: import.meta.env  }, inject)
           `;
-        })}
+        }).join(';\n')}
     };
 
     export default {
