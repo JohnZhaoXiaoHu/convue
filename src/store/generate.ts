@@ -28,7 +28,7 @@ export function generateStores(filesPath: string[], options: ResolvedOptions) {
 
 const LoadingPlugin = `
   const NAMESPACE = "loading";  // 定义模块名
-  const SHOW = "loading/HIDE" // 显示mutation 同步type
+  const SHOW = "loading/SHOW" // 显示mutation 同步type
   const HIDE = "loading/HIDE"
 
   const createLoadingPlugin = ({
