@@ -170,6 +170,7 @@ export function generateClientCode(routes: Route[], middlewares: any[], options:
       const redirect = (path) => {
         next({ path });
       }
+
       const allRouteNames = routes[0].children.map(n => n.name);
       if (!allRouteNames.includes(to.name)) {
         if (allRouteNames.includes('/404')) {
@@ -185,7 +186,11 @@ export function generateClientCode(routes: Route[], middlewares: any[], options:
             '({ query: to.query, params: to.params, route: to, redirect, store, app: window.__APP__, env: import.meta.env });'
           )}({ query: to.query, params: to.params, route: to, redirect, store, app: window.__APP__, env: import.meta.env });
       }
+      next();
+    });
 
+    router.afterEach((to, from) => {
+      ${progress && 'NProgress.done();'}
       const head = to.meta.head;
       if (head && head.title) {
         document.title = /^t\(.+\)$/.test(head.title) ? window.__APP__.__VUE_I18N__.global.t(head.title.slice(3, -2)) : head.title;
@@ -208,11 +213,6 @@ export function generateClientCode(routes: Route[], middlewares: any[], options:
           document.head.appendChild(link);
         });
       }
-      next();
-    });
-
-    router.afterEach((to, from) => {
-      ${progress && 'NProgress.done();'}
     });
 
     export default router;
