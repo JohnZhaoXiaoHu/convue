@@ -1,6 +1,10 @@
 /**
  * Plugin options.
  */
+export interface CookieOptions {
+  cookieKey?: string;
+  expires?: number;
+}
 interface Options {
   /**
    * Relative path to the directory to search for locales.
@@ -8,6 +12,7 @@ interface Options {
    */
   dir: string;
   defaultLocale: string;
+  useCookie?: boolean | CookieOptions;
   /**
    * Valid file extensions for store.
    * @default ['js', 'ts']

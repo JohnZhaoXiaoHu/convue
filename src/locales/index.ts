@@ -15,6 +15,7 @@ function resolveOptions(userOptions: UserOptions): ResolvedOptions {
     dir = 'src/locales',
     defaultLocale = '',
     extensions = ['js', 'ts'],
+    useCookie = true,
     exclude = [],
   } = userOptions;
 
@@ -41,6 +42,13 @@ function routePlugin(userOptions: UserOptions = {}): Plugin {
   let generatedLocales: any[] | null | undefined;
 
   const options: ResolvedOptions = resolveOptions(userOptions);
+
+  if (options.useCookie === true) {
+    options.useCookie = {
+      cookieKey: 'i18n',
+      expires: 365,
+    }
+  }
 
   return {
     name: 'vite-plugin-store',

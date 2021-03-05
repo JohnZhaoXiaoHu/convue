@@ -13,6 +13,7 @@ function resolveOptions(userOptions: UserOptions): ResolvedOptions {
     dir = 'src/layouts',
     extensions = ['vue', 'js', 'jsx', 'ts', 'tsx'],
     exclude = [],
+    useCookie = true,
   } = userOptions
 
   const root = process.cwd()
@@ -34,6 +35,13 @@ function layoutPlugin(userOptions: UserOptions = {}): Plugin {
 
   const options: ResolvedOptions = resolveOptions(userOptions)
 
+  if (options.useCookie === true) {
+    options.useCookie = {
+      cookieKey: 'i18n',
+      expires: 365,
+    }
+  }
+
   return {
     name: 'vite-plugin-layouts',
     enforce: 'pre',
@@ -54,7 +62,7 @@ function layoutPlugin(userOptions: UserOptions = {}): Plugin {
 
         const importCode = getImportCode(files, options)
 
-        const clientCode = getClientCode(importCode, options.dir)
+        const clientCode = getClientCode(importCode, options)
 
         debug('Client code: %O', clientCode)
 

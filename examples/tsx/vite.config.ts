@@ -7,7 +7,13 @@ export default defineConfig({
     vueJsx(),
     ...convue({
       styles: ['ant-design-vue/dist/antd.css'],
-      modules: ['ant-design-vue']
+      modules: ['ant-design-vue'],
+      locale: {
+        useCookie: {
+          cookieKey: 'ant-admin',
+          expires: 1
+        }
+      }
     }),
   ],
 });

@@ -28,10 +28,17 @@ export function generateClientCode(locales: any[], options: ResolvedOptions) {
 
   return `
     import { createI18n } from 'vue-i18n'
+    import Cookies from 'js-cookie';
     ${locales.map((n) => n.imports).join('\n')}
 
+    ${typeof options.useCookie !== 'boolean' && options.useCookie ? `const presetLocale = Cookies.get('${options.useCookie.cookieKey}');` : ''}
+
     const i18n = createI18n({
-      locale: '${options.defaultLocale || locales[0].defaultKey}',
+      locale: ${
+        options.useCookie
+          ? `presetLocale || '${options.defaultLocale || locales[0].defaultKey}'`
+          : `'${options.defaultLocale || locales[0].defaultKey}'`
+      },
       messages: {
         ${locales
           .map((locale) => {

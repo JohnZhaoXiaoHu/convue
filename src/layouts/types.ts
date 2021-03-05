@@ -1,6 +1,10 @@
 /**
  * Plugin options.
  */
+export interface CookieOptions {
+  cookieKey?: string;
+  expires?: number;
+}
 interface Options {
   /**
    * Relative path to the directory to search for page components.
@@ -18,6 +22,8 @@ interface Options {
    * List of path globs to exclude when resolving pages.
    */
   exclude: string[]
+
+  useCookie?: boolean | CookieOptions;
 }
 
 export type UserOptions = Partial<Options>

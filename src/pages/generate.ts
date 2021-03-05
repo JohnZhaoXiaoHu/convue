@@ -186,15 +186,8 @@ export function generateClientCode(routes: Route[], middlewares: any[], options:
             '({ query: to.query, params: to.params, route: to, redirect, store, app: window.__APP__, env: import.meta.env });'
           )}({ query: to.query, params: to.params, route: to, redirect, store, app: window.__APP__, env: import.meta.env });
       }
-      next();
-    });
 
-    router.afterEach((to, from) => {
-      ${progress && 'NProgress.done();'}
       const head = to.meta.head;
-      if (head && head.title) {
-        document.title = /^t\(.+\)$/.test(head.title) ? window.__APP__.__VUE_I18N__.global.t(head.title.slice(3, -2)) : head.title;
-      }
       if (head && head.meta) {
         const metaTags = head.meta.forEach((item) => {
           const meta = document.createElement('meta');
@@ -213,8 +206,12 @@ export function generateClientCode(routes: Route[], middlewares: any[], options:
           document.head.appendChild(link);
         });
       }
+      next();
     });
 
+    router.afterEach((to, from) => {
+      ${progress && 'NProgress.done();'}
+    });
     export default router;
   `;
 }

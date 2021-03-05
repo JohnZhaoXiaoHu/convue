@@ -16,6 +16,7 @@
 import { defineComponent, getCurrentInstance, ComponentInternalInstance, toRaw } from 'vue';
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
+import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
   name: 'Index',
@@ -26,6 +27,14 @@ export default defineComponent({
     const toString = instance?.appContext.config.globalProperties.$toString;
 
     console.log(toRaw(route.meta));
+
+    const { locale } = useI18n();
+
+    locale.value = 'en-US';
+
+    setTimeout(() => {
+      locale.value = 'zh-CN';
+    }, 5000);
 
     return () => (
       <div>

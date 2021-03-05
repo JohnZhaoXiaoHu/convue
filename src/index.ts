@@ -18,7 +18,10 @@ const convue = (options: Options) => {
       ...options.page,
       progress: options.progress || options.progress === false ? options.progress : true,
     }),
-    Layouts(options.layout),
+    Layouts({
+      ...options.layout,
+      useCookie: options.locale && options.locale.useCookie ? options.locale.useCookie : true,
+    }),
     Components(options.component),
     Store(options.store),
     Html({

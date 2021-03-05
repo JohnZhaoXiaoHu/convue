@@ -21,6 +21,11 @@ export interface Progress {
   size?: string;
 }
 
+export interface CookieOptions {
+  cookieKey?: string;
+  expires?: number;
+}
+
 /**
  * Plugin options.
  */
@@ -153,6 +158,7 @@ export interface Options {
      */
     dir?: string;
     defaultLocale?: string;
+    useCookie?: boolean | CookieOptions;
     /**
      * Valid file extensions for locale.
      * @default ['js', 'ts']
