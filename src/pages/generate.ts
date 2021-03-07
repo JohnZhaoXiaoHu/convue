@@ -182,8 +182,9 @@ export function generateClientCode(routes: Route[], middlewares: any[], options:
       }
 
       const allRouteNames = routes[0].children.map(n => n.name);
+      const allRoutePaths = routes[0].children.map(n => n.path);
       if (!allRouteNames.includes(to.name)) {
-        if (allRouteNames.includes('/404')) {
+        if (allRoutePaths.includes('/404')) {
           redirect('/404');
         } else {
           redirect('/');
