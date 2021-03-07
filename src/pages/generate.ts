@@ -1,7 +1,8 @@
 import * as fs from 'fs';
+import { resolve } from 'path';
 import deepEqual from 'deep-equal';
 import { Route, ResolvedOptions } from './types';
-import { debug, isDynamicRoute } from './utils';
+import { debug, isDynamicRoute, normalizePath } from './utils';
 import { stringifyRoutes } from './stringify';
 import { tryParseCustomBlock, parseSFC } from './parseSfc';
 
@@ -146,6 +147,15 @@ export function genarateHeadElements(head: any) {
 export function generateClientCode(routes: Route[], middlewares: any[], options: ResolvedOptions) {
   const { imports, stringRoutes } = stringifyRoutes(routes, options);
   const { router, progress } = options;
+  let title: string;
+  if (options.head && options.head.title) {
+    title = options.head.title;
+  } else {
+    const packageJson = JSON.parse(
+      fs.readFileSync(normalizePath(resolve(options.root, 'package.json')), 'utf-8')
+    );
+    title = packageJson.name;
+  }
 
   return `
     import { createRouter, ${
@@ -188,6 +198,11 @@ export function generateClientCode(routes: Route[], middlewares: any[], options:
       }
 
       const head = to.meta.head;
+      if (head && head.title) {
+        document.title = /^t\(.+\)$/.test(head.title) ? window.__APP__.__VUE_I18N__.global.t(head.title.slice(3, -2)) : head.title;
+      } else {
+        document.title = /^t\(.+\)$/.test('${title}') ? window.__APP__.__VUE_I18N__.global.t('${title.slice(3, -2)}') : '${title}';
+      }
       if (head && head.meta) {
         const metaTags = head.meta.forEach((item) => {
           const meta = document.createElement('meta');

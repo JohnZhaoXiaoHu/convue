@@ -1,6 +1,18 @@
+import fs from 'fs';
+import { resolve } from 'path';
 import { ResolvedOptions } from './types';
+import { normalizePath } from './utils';
 
 function getClientCode(importCode: string, options: ResolvedOptions) {
+  let title: string;
+  if (options.head && options.head.title) {
+    title = options.head.title;
+  } else {
+    const packageJson = JSON.parse(
+      fs.readFileSync(normalizePath(resolve(options.root, 'package.json')), 'utf-8')
+    );
+    title = packageJson.name;
+  }
   const code = `
 import {
   h,
@@ -39,11 +51,6 @@ export function createRouterLayout(
       const layoutComp = name
         ? (await resolve(name)).default
         : undefined
-
-      const head = to.meta.head;
-      if (head && head.title) {
-        document.title = /^t\(.+\)$/.test(head.title) ? window.__APP__.__VUE_I18N__.global.t(head.title.slice(3, -2)) : head.title;
-      }
 
       next((vm) => {
         vm.layoutName = name
@@ -90,6 +97,8 @@ export function createRouterLayout(
         const head = route.meta.head;
         if (head && head.title) {
           document.title = /^t\(.+\)$/.test(head.title) ? window.__APP__.__VUE_I18N__.global.t(head.title.slice(3, -2)) : head.title;
+        } else {
+          document.title = /^t\(.+\)$/.test('${title}') ? window.__APP__.__VUE_I18N__.global.t('${title.slice(3, -2)}') : '${title}';
         }
       });
     },

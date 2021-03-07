@@ -14,7 +14,7 @@
 </route> */}
 
 import { defineComponent, getCurrentInstance, ComponentInternalInstance, toRaw } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { useI18n } from 'vue-i18n';
 
@@ -23,6 +23,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const route = useRoute();
+    const router = useRouter();
     const instance: ComponentInternalInstance | null = getCurrentInstance();
     const toString = instance?.appContext.config.globalProperties.$toString;
 
@@ -46,7 +47,7 @@ export default defineComponent({
         </span>
 
         <div>
-          <a-button type="primary">Primary Button</a-button>
+          <a-button type="primary" onClick={() => router.push('/about')}>Primary Button</a-button>
         </div>
 
         <div>{toString({ a: 1 })}</div>

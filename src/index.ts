@@ -16,10 +16,12 @@ const convue = (options: Options) => {
     }),
     Pages({
       ...options.page,
+      head: options.head,
       progress: options.progress || options.progress === false ? options.progress : true,
     }),
     Layouts({
       ...options.layout,
+      head: options.head,
       useCookie: options.locale && options.locale.useCookie ? options.locale.useCookie : true,
     }),
     Components(options.component),

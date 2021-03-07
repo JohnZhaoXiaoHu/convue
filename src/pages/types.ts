@@ -35,6 +35,13 @@ interface Options {
    */
   middleware: string
   progress: boolean | Progress;
+
+  head?: {
+    title?: string;
+    meta?: Record<string, string>[];
+    link?: Record<string, string>[];
+    style?: string;
+  };
   /**
    * router config
    */
