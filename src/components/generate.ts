@@ -9,13 +9,19 @@ export function generateComponents(filesPath: string[], options: ResolvedOptions
     const filePaths = filePath.split('/');
     let name = filePaths[0].toLocaleLowerCase();
 
-    for (const path of filePaths.slice(1)) {
+    for (const path of filePaths.slice(1, -1)) {
       name += `-${path.toLocaleLowerCase()}`;
     }
 
-    name = name.split('.')[0].replace(/-(\w)/g, function (_$0, $1) {
+    if (filePaths.length > 1 && filePaths[filePaths.length - 1].toLocaleLowerCase().split('.')[0] !== 'index') {
+      name += `-${filePaths[filePaths.length - 1].toLocaleLowerCase().split('.')[0]}`
+    }
+
+    name = name.replace(/-(\w)/g, function (_$0, $1) {
       return $1.toUpperCase();
     });
+
+    console.log(name);
 
     components.push({
       imports: `import ${name} from '${componentsDirPath}/${filePath}'`,
