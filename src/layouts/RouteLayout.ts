@@ -96,9 +96,9 @@ export function createRouterLayout(
         }
         const head = route.meta.head;
         if (head && head.title) {
-          document.title = /^t\(.+\)$/.test(head.title) ? window.__APP__.__VUE_I18N__.global.t(head.title.slice(3, -2)) : head.title;
+          document.title = /^t\(.+\)$/.test(head.title) ? window.__APP__.config.globalProperties.$t(head.title.slice(3, -2)) : head.title;
         } else {
-          document.title = /^t\(.+\)$/.test('${title}') ? window.__APP__.__VUE_I18N__.global.t('${title.slice(3, -2)}') : '${title}';
+          document.title = /^t\(.+\)$/.test('${title}') ? window.__APP__.config.globalProperties.$t('${title.slice(3, -2)}') : '${title}';
         }
       });
     },
