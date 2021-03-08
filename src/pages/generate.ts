@@ -175,7 +175,7 @@ export function generateClientCode(routes: Route[], middlewares: any[], options:
       routes,
     });
 
-    router.beforeEach((to, from, next) => {
+    router.beforeEach(async (to, from, next) => {
       ${progress && 'NProgress.start();'}
       const redirect = (path) => {
         next({ path });
@@ -192,7 +192,7 @@ export function generateClientCode(routes: Route[], middlewares: any[], options:
       }
       if (to.path !== '/404') {
         ${middlewares
-          .map((n) => n.name)
+          .map((n) => `await ${n.name}`)
           .join(
             '({ query: to.query, params: to.params, route: to, redirect, store, app: window.__APP__, env: import.meta.env });'
           )}({ query: to.query, params: to.params, route: to, redirect, store, app: window.__APP__, env: import.meta.env });
