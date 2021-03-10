@@ -194,8 +194,8 @@ export function generateClientCode(routes: Route[], middlewares: any[], options:
         ${middlewares
           .map((n) => `await ${n.name}`)
           .join(
-            '({ query: to.query, params: to.params, route: to, redirect, t: window.t, store, app: window.__APP__, env: import.meta.env });'
-          )}({ query: to.query, params: to.params, route: to, redirect, t: window.t, store, app: window.__APP__, env: import.meta.env });
+            '({ query: to.query, params: to.params, route: to, redirect, i18n: window.i18n, store, app: window.__APP__, env: import.meta.env });'
+          )}({ query: to.query, params: to.params, route: to, redirect, i18n: window.i18n, store, app: window.__APP__, env: import.meta.env });
       }
 
       const head = to.meta.head;

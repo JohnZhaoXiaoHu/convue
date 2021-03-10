@@ -34,6 +34,7 @@ export default function PackagesPlugin(userOptions: Options = {}): Plugin {
           const install = (app) => {
             app.use(i18n);
             window.t = window.$t = window._t = i18n.global.t;
+            window.i18n = i18n;
             app.config.globalProperties = {
               ...app.config.globalProperties,
               $t: i18n.global.t,
