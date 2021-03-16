@@ -1,0 +1,1 @@
+import{o as a,c as n,a as s}from"./app.d4385936.js";const t='{"title":"中间件","description":"","frontmatter":{},"headers":[{"level":2,"title":"参数","slug":"参数"}],"relativePath":"zh/guide/middleware.md","lastUpdated":1615889129670}',e={},p=s('',7);e.render=function(s,t,e,o,i,l){return a(),n("div",null,[p])};export default e;export{t as __pageData};

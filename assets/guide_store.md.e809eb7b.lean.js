@@ -1,0 +1,1 @@
+import{o as n,c as s,a}from"./app.d4385936.js";const t='{"title":"Global store","description":"","frontmatter":{},"headers":[{"level":2,"title":"Description","slug":"description"}],"relativePath":"guide/store.md","lastUpdated":1614565307161}',p={},o=a('',14);p.render=function(a,t,p,e,c,u){return n(),s("div",null,[o])};export default p;export{t as __pageData};
