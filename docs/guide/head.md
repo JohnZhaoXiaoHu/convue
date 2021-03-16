@@ -97,4 +97,6 @@ export default defineComponent({
 });
 ```
 
+If head.title needs to be multilingual, use the t('Convue') function
+
 For other rules, please [refer to the head configuration item](/convue/config/head).

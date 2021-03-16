@@ -97,4 +97,6 @@ export default defineComponent({
 });
 ```
 
+如果 head.title 需要做多语言，则使用 t('Convue') 函数
+
 其他规则请[参考 head 配置项](/convue/zh/config/head)。

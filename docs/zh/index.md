@@ -64,7 +64,7 @@ app.use(convue);
 app.mount('#app');
 ```
 
-## 使用脚手架
+## 使用脚手架（推荐）
 
 convue 提供了一套初始化项目的脚手架工具，目前支持 sfc (vue 单文件) 形式和 tsx 方式两种开发模式。
 

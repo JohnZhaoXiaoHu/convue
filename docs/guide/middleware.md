@@ -19,6 +19,7 @@ export default ({ redirect, store }) => {
 -route: current route information
 -redirect: redirect function, accept a url as a parameter
 -store: access to global status
+- i18n: i18n instance
 -app: current vue instance
 -env: list of environment variables
 

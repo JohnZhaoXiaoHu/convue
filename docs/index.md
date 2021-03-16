@@ -63,7 +63,7 @@ app.use(convue);
 app.mount('#app');
 ```
 
-## Using convue-cli
+## Using convue-cli(recommend)
 
 convue provides a set of scaffolding tools for initializing projects, currently supporting both sfc (vue single file) and tsx development modes.
 

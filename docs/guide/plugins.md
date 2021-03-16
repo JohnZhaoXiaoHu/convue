@@ -35,5 +35,6 @@ The first parameter description:
 -router: current routing object
 -route: current route information
 -env: list of environment variables
+- t: i18n instance's function
 
 For other rules, please [refer to plugin configuration item](/convue/config/plugin).

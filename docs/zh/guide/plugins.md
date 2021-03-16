@@ -35,5 +35,6 @@ const toString = instance?.appContext.config.globalProperties.$toString;
 - router: 当前路由对象
 - route: 当前路由的信息
 - env: 环境变量列表
+- t: i18n 的 t 函数
 
 其他规则请[参考 plugin 配置项](/convue/zh/config/plugin)。

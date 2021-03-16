@@ -19,6 +19,7 @@ export default ({ redirect, store }) => {
 - route: 当前路由的信息
 - redirect: 重定向函数，接受一个 url 作为参数
 - store: 全局状态访问
+- i18n: i18n 实例对象
 - app: 当前 vue 实例
 - env: 环境变量列表
 
